@@ -61,19 +61,21 @@ def _parse_duration(text: str) -> int | None:
     found = False
 
     patterns = [
-        (r'(\d+)\s*hour',   3600),
-        (r'(\d+)\s*hr',     3600),
-        (r'(\d+)\s*h\b',    3600),
-        (r'(\d+)\s*minute', 60),
-        (r'(\d+)\s*min',    60),
-        (r'(\d+)\s*m\b',    60),
-        (r'(\d+)\s*second', 1),
-        (r'(\d+)\s*sec',    1),
-        (r'(\d+)\s*s\b',    1),
+        (r'(\d+)\s*hours?',   3600),
+        (r'(\d+)\s*hrs?',     3600),
+        (r'(\d+)\s*h\b',      3600),
+        (r'(\d+)\s*minutes?', 60),
+        (r'(\d+)\s*mins?',    60),
+        (r'(\d+)\s*m\b',      60),
+        (r'(\d+)\s*seconds?', 1),
+        (r'(\d+)\s*secs?',    1),
+        (r'(\d+)\s*s\b',      1),
     ]
+    matched_positions = set()
     for pattern, multiplier in patterns:
         m = re.search(pattern, text)
-        if m:
+        if m and m.start() not in matched_positions:
+            matched_positions.add(m.start())
             total += int(m.group(1)) * multiplier
             found = True
 
