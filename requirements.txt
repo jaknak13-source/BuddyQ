@@ -1,0 +1,50 @@
+# ============================================================================
+# BuddyQ Voice Assistant — Python Requirements
+# ============================================================================
+#
+# Install with:
+#   stt\venv\Scripts\python.exe -m pip install -r requirements.txt
+#
+# Python 3.10+ required.
+# Create the venv first:
+#   python -m venv stt\venv
+# ============================================================================
+
+# ── Speech-to-Text ────────────────────────────────────────────────────────────
+# faster-whisper: optimised CTranslate2-based Whisper inference
+faster-whisper>=1.0.0
+
+# ── Audio I/O ─────────────────────────────────────────────────────────────────
+# sounddevice: cross-platform audio input/output via PortAudio
+sounddevice>=0.4.6
+
+# ── Numeric ───────────────────────────────────────────────────────────────────
+# numpy: audio buffer processing and float32 conversion
+numpy>=1.24.0
+
+# ── HTTP / APIs ───────────────────────────────────────────────────────────────
+# requests: simpler HTTP client (optional, if you switch from urllib)
+# Currently not required by default code; leave commented as a convenience.
+# requests>=2.31.0
+
+# ── LLM Client ────────────────────────────────────────────────────────────────
+# openai: used as the llama.cpp / LM Studio-compatible HTTP client
+# No actual OpenAI account or API key needed — points to localhost
+openai>=1.14.0
+
+# ── Windows-only system integration (optional but recommended) ───────────────
+# pycaw + comtypes: for system volume control in system_tool.py
+pycaw>=20230407
+comtypes>=1.1.14
+
+# nircmd is an external EXE, not a Python package. No pip entry needed.
+
+# ── Standard library modules used (no install needed) ─────────────────────────
+# os, sys, re, json, threading, time, wave, queue, subprocess, urllib, math,
+# datetime, typing, functools, itertools, statistics
+# These are all part of the Python standard library.
+
+# ── Optional: only needed if sounddevice playback fails on your system ────────
+# pyaudio is NOT required by default but can serve as an alternative audio backend
+# Uncomment if needed:
+# pyaudio>=0.2.13
